@@ -1,0 +1,8 @@
+﻿@model AnimeModel
+@{
+    ViewData["Title"] = "Apagar";
+}
+
+<h1>Deseja apagar @Model.Nome ?</h1>
+<a class="btn btn-success"  asp-route-id="@Model.Id" asp-controller="Anime" asp-action="ConfirmarAPG">Confirmar</a>
+<a class="btn btn-secondary" asp-controller="Anime" asp-action="Edicao">Voltar</a>

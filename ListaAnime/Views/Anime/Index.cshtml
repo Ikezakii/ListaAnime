@@ -1,0 +1,59 @@
+﻿@model List<AnimeModel>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="d-flex justify-content-between">
+    <a class="btn btn-info" asp-controller="Anime" asp-action="Criar">Adicionar</a>
+
+    <a class="btn btn-warning ml-auto" asp-controller="Anime" asp-action="Edicao">Alterar</a>
+</div>
+
+
+
+<div class="text-center">
+    <h1 class="display-4">Lista de Animes</h1>
+
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+   
+<table class="table" id="table-animes">
+    <thead>
+        <tr>
+            
+            <th scope="col">Nome</th>
+            <th scope="col">Nota</th>
+            <th scope="col">Comentário</th>
+            <th scope="col">Season</th>
+                
+        </tr>
+    </thead>
+    @if(Model != null && Model.Any())
+    {
+        foreach(AnimeModel item in Model)
+        {
+            <tbody>
+                <tr>
+                    <th>@item.Nome</th>
+                    <td>@item.Nota</td>
+                    <td style="word-wrap: break-word; max-width: 300px;">@item.Descricao</td>
+                    <td>@item.Temporada</td>
+                </tr>
+            </tbody>
+        }
+    }
+
+   
+</table>
+</div>

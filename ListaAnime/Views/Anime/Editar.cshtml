@@ -1,0 +1,46 @@
+﻿@model AnimeModel
+@{
+    ViewData["Title"] = "Pagina de edicao";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Editar Anime</h1>
+</div>
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+        @TempData["MensagemErro"]
+    </div>
+}
+
+<form asp-controller="Anime" asp-action="Editar" method="post">
+<input type="hidden" asp-for="Id"/>
+    <div class="mb-3">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" class="form-control" asp-for="Nome">
+        
+    </div>
+
+    <div class="mb-3">
+        <label for="nota" class="form-label">Nota</label>
+        <input type="number" class="form-control" min="0" max="10" step="1" asp-for="Nota" oninput="this.value = Math.round(this.value)">
+       
+    </div>
+
+    <div class="mb-3">
+        <label for="comentario" class="form-label">Comentário</label>
+        <input type="text" class="form-control" asp-for="Descricao">
+       
+    </div>
+
+    <div class="mb-3">
+        <label for="season" class="form-label">Season</label>
+        <input type="text" class="form-control" asp-for="Temporada">
+       
+    </div>
+
+    <button type="submit" class="btn btn-primary">Atualizar</button>
+    <a class="btn btn-secondary" asp-controller="Anime" asp-action="Edicao">Voltar</a>
+</form>
